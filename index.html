@@ -10,10 +10,26 @@
 		<header>
 			<img src="img/logo.svg" alt="Na Mira - A festa do cupido">
 		</header>
-		<div class="quote">
-			<blockquote>
-				Moça loira de cabelo curto da pós graduação da biologia, que estava no curso de linux próximo do ic na semana 29/09 a 02/09, qual é seu nome?
-			</blockquote>
+		<div class="quote slider">
+			<div class="frame">
+				<ul class="slides">
+					<li>
+						<blockquote>
+							1 Moça loira de cabelo curto da pós graduação da biologia, que estava no curso de linux próximo do ic na semana 29/09 a 02/09, qual é seu nome?
+						</blockquote>
+					</li>
+					<li>
+						<blockquote>
+							2 Moça loira de cabelo curto da pós graduação da biologia, que estava no curso de linux próximo do ic na semana 29/09 a 02/09, qual é seu nome?
+						</blockquote>
+					</li>
+					<li>
+						<blockquote>
+							3 Moça loira de cabelo curto da pós graduação da biologia, que estava no curso de linux próximo do ic na semana 29/09 a 02/09, qual é seu nome?
+						</blockquote>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<footer>
 			<div class="apoio">
@@ -28,5 +44,18 @@
 				</div>
 			</div>
 		</footer>
+
+		<script>
+			(() => {
+				let slider = document.querySelector('ul.slides');
+
+				slider.dataset.currentSlide = 0;
+
+				setInterval(() => {
+					slider.dataset.currentSlide = (slider.dataset.currentSlide + 1) % slider.children.length;
+					slider.style.transform = `translateX(${-100 * slider.dataset.currentSlide}%)`;
+				}, 3000)
+			})();
+		</script>
 	</body>
 </html>
