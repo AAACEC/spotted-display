@@ -1,0 +1,95 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700';
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: 'Open Sans', sans-serif;
+	color: #FFF;
+
+	background: url("img/bg.png") no-repeat;
+	background-size: cover;
+
+	margin: 0;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+body > * {
+	padding: 20px;
+}
+
+header, footer {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: top;
+}
+
+.quote {
+	font-size: 3.5em;
+	max-width: 75%;
+}
+
+blockquote{
+	display:block;
+	padding: 15px 45px;
+	margin: 0 0 20px;
+	position: relative;
+
+	line-height: 1.2;
+	text-align: justify;
+	border-left: 15px solid #D62D5C;
+}
+
+blockquote::before{
+	content: "\201C";
+
+	font-family: Georgia, serif;
+	font-size: 1.15em;
+	font-weight: bold;
+	color: #AAA;
+
+	position: absolute;
+	left: 10px;
+	top: 5px;
+}
+
+header,
+footer {
+	height: 20vh;
+}
+
+.apoio,
+.realizacao,
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+header img {
+	height: 100%;
+}
+
+.apoio img,
+.realizacao img {
+	height: 7.5vh;
+}
+
+.apoio span,
+.realizacao span {
+	margin-bottom: 5px;
+}
