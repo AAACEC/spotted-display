@@ -5,6 +5,8 @@
 
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="index.css">
+
+		<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 	</head>
 	<body>
 		<header>
@@ -48,13 +50,39 @@
 		<script>
 			(() => {
 				let slider = document.querySelector('ul.slides');
+				let fb = new Firebase('https://spotted-display.firebaseio.com');
 
-				slider.dataset.currentSlide = 0;
+				slider.dataset.currentSlide = -1;
 
-				setInterval(() => {
-					slider.dataset.currentSlide = (slider.dataset.currentSlide + 1) % slider.children.length;
-					slider.style.transform = `translateX(${-100 * slider.dataset.currentSlide}%)`;
-				}, 3000)
+				function updateSlider() {
+					let curSlide = slider.dataset.currentSlide
+						= (slider.dataset.currentSlide + 1) % slider.children.length;
+
+					if (curSlide === 0) {
+						while (slider.lastChild) {
+							slider.removeChild(slider.lastChild);
+						}
+
+						fb.once('value', (ds) => {
+							let dataSet = ds.val();
+
+							dataSet.forEach((v, k) => {
+								let q = document.createElement('li');
+
+								// This ain't beautiful but as of right now I only have 59 minutes to finish this
+								q.innerHTML = `<blockquote>#${k} - ${v}</blockquote>`;
+
+								slider.appendChild(q);
+							});
+						});
+					}
+
+					slider.style.transform = `translateX(${-100 * curSlide}%)`;
+				}
+
+				updateSlider();
+				updateSlider();
+				setInterval(updateSlider, 3000);
 			})();
 		</script>
 	</body>
